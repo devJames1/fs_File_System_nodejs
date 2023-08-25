@@ -100,11 +100,11 @@ const fs = require('fs/promises');
 
 
     //handling double write, but this has it's tradeoffs where you can't write something twice.
-    let addedContent;
+    // let addedContent;
 
     // function to add  to any file on any path
     const addToFile = async (path, content) => {
-        if (addedContent === content) return;
+        // if (addedContent === content) return;
         try {
             // Check if the file exists before writing
             const fileStats = await fs.stat(path);
@@ -195,10 +195,16 @@ const fs = require('fs/promises');
     //watcher...
     const watcher = fs.watch("./command.txt");
 
+
+    let working = false; // added to solve double firing of nodejs fs.watch
     for await (const event of watcher) {
-        if (event.eventType == "change") {
+        if (event.eventType == "change" && working == false) {
+            working = true; // added to solve double firing of nodejs fs.watch
+
             //emmit the event define above
             commandFileHandler.emit("change");
+
+            working = false; // added to solve double firing of nodejs fs.watch
         }
     }
 })();

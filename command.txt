@@ -1,1 +1,1 @@
-create a file test.txt
+add to the file test2.txt this content: Check firing in nodejs

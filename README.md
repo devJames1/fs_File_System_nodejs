@@ -44,7 +44,7 @@ Replace `<path>`, `<old-path>`, `<new-path>`, and `<content>` with the actual pa
 
 - If the specified file doesn't exist for a particular operation, an error message will be displayed.
 - To avoid multiple appends of the same content, the utility tracks the previously added content.
-- multiple appends may still occur randomly due to unstable `fs` module.
+- multiple appends may still occur randomly due to unstable `fs` module. (Now Fixed!)
 
 ## Error Handling
 
